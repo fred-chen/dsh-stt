@@ -1,0 +1,21 @@
+# dsh-stt — 语音转文字
+#
+# 注册宿主插件行（设置桥 /api/dsh-stt/*、stt_transcribe 工具都在这一行里）。
+# 默认端点按当前环境设为 http://ai4090:8080/v1/audio/transcriptions
+# （OpenAI 兼容转写端点，llama-swap 代理 Whisper-Large-v3-Turbo）。
+# endpoint 也接受 origin、/v1、/v1/audio 写法，加载时自动补全。
+# apiKey 是 secret 字段，保存后设置页只显示"已保存"，不回传明文。
+# language 留空 = 服务端自动检测；responseFormat 默认 json（只要正文），
+# 需要时间戳/语言/时长时改 verbose_json 或调用时单独指定。
+- insert:
+    - id: dsh-stt
+      name: dsh-stt
+      config:
+        enabled: true
+        endpoint: http://ai4090:8080/v1/audio/transcriptions
+        model: Whisper-Large-v3-Turbo
+        language: ""
+        responseFormat: json
+        workDir: .dsh-stt
+        autoConvert: true
+        timeoutSec: 300

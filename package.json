@@ -1,0 +1,86 @@
+{
+  "name": "dsh-stt",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness 语音转文字插件：调用 OpenAI 兼容 /v1/audio/transcriptions 端点（默认 http://ai4090:8080/v1/audio/transcriptions，Whisper-Large-v3-Turbo），支持端点与模型自定义、语言指定或自动检测、带时间戳的分段输出、URL 音频与 ffmpeg 自动转码。提供 stt_transcribe 工具。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./core": "./lib/core.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/core.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "stt",
+    "speech-to-text",
+    "transcription",
+    "whisper"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-settings": "^0.1.7-rc.1 || ^0.2.0-rc.1",
+    "@deepseek-ai/dsh-tools": "^0.1.7-rc.1 || ^0.2.0-rc.1",
+    "@deepseek-ai/schemastery": "^3.18.4",
+    "react": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-settings": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "cordis.patch.yml"
+    },
+    "engines": {
+      "dsh": ">=0.1.7-rc.1"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-plugin-manager",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-tool"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "test": "node test/core.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fred-chen/dsh-stt.git"
+  },
+  "homepage": "https://github.com/fred-chen/dsh-stt",
+  "bugs": {
+    "url": "https://github.com/fred-chen/dsh-stt/issues"
+  }
+}
